@@ -1,4 +1,3 @@
-import { useSession } from "next-auth/react";
 import { Trans } from "next-i18next";
 import type { AriaRole, ComponentType } from "react";
 import React, { Fragment, useEffect } from "react";
@@ -16,10 +15,9 @@ type LicenseRequiredProps = {
 };
 
 const LicenseRequired = ({ children, as = "", ...rest }: LicenseRequiredProps) => {
-  const session = useSession();
   const { t } = useLocale();
   const Component = as || Fragment;
-  const hasValidLicense = session.data ? session.data.hasValidLicense : null;
+  const hasValidLicense = true;
 
   useEffect(() => {
     if (process.env.NODE_ENV === "development" && hasValidLicense === false) {
